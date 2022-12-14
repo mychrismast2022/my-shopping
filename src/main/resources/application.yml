@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: Shopping_System
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/grab_system
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: toannt16.adsword@gmail.com
+    password: sgcssaulsbtbtjpi
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
