@@ -12,17 +12,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@Data
-@Entity
-@Table(name = "employees")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Employee extends User {
-    private String position;
 
-    private BigDecimal salary;
-
-    private int numberOfWorkingDays;
-
-    private int seniority;
 
 }

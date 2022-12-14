@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,4 +30,9 @@ public class Address {
     @JoinColumn(name = "district_id")
     private District district;
 
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Supplier> suppliers;
+
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Order> orders;
 }

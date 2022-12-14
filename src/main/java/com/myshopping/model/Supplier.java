@@ -9,7 +9,9 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "suppliers")
+@Table(name = "suppliers", indexes = {
+        @Index(name  = "uniqueName", columnList = "name", unique = true)
+})
 public class Supplier {
 
     @Id
@@ -27,4 +29,8 @@ public class Supplier {
 
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
     private Set<Product> products;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 }

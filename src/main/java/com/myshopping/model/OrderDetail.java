@@ -19,7 +19,6 @@ public class OrderDetail {
     @OneToMany(mappedBy = "orderDetail", cascade = CascadeType.ALL)
     private Set<Product> products;
 
-
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;

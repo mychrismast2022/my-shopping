@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "district")
+@Table(name = "city", indexes = @Index(name = "uniqueDistrictName", columnList = "district_name", unique = true))
 public class District {
 
     @Id

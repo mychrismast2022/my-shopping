@@ -11,7 +11,11 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "orders")
+@Table(name = "orders", indexes = {
+        @Index(name = "uniqueOrderDate", columnList = "order_date", unique = true),
+        @Index(name = "uniqueShippedDate", columnList = "shipped_date", unique = true),
+        @Index(name = "uniqueRequiredDate", columnList = "required_date", unique = true)
+})
 public class Order {
 
     @Id
@@ -19,15 +23,15 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private User customer;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    private Employee employee;
+    private User employee;
 
     @ManyToOne
     @JoinColumn(name = "shipper_id")
-    private Shipper shipper;
+    private User shipper;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private Set<OrderDetail> orderDetails;
@@ -46,4 +50,16 @@ public class Order {
 
     @Column(name = "required_date")
     private LocalDate requiredDate;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @ManyToMany
+    @JoinTable(
+            name = "order_payments",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "payment_id")}
+    )
+    private Set<Payment> payments;
 }

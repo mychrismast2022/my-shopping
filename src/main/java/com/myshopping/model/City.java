@@ -9,14 +9,14 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "city")
+@Table(name = "city", indexes = @Index(name = "uniqueCityName", columnList = "city_name", unique = true))
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "district_name")
-    private String districtName;
+    @Column(name = "city_name")
+    private String cityName;
 
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<District> districts;

@@ -8,10 +8,6 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@Entity
-@Table
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Cash extends Payment {
-    @Column(name = "cash_tendered")
-    private BigDecimal cashTendered;
+
 }

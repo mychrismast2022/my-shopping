@@ -9,7 +9,9 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name="category")
+@Table(name="category", indexes = {
+        @Index(name = "uniqueName", columnList = "name", unique = true)
+})
 public class Category {
 
     @Id

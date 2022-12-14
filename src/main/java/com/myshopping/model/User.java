@@ -11,7 +11,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@MappedSuperclass
+@Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,6 +57,12 @@ public class User {
     @Column(name = "height")
     private BigDecimal height;
 
+    @Column(name = "favorite")
+    private String favorite;
+
+    @Column(name = "weight")
+    private BigDecimal weight;
+
     @Column(name = "width")
     private BigDecimal  width;
 
@@ -65,15 +72,24 @@ public class User {
     @Column(name = "number_of_working_days")
     private int numberOfWorkingDays;
 
+    @Column(name = "salary")
+    private BigDecimal salary;
+
+    @Column(name = "seniority")
+    private int seniority;
+
+    @Column(name = "number_of_orders")
+    private int numberOfOrders;
+
     @ManyToMany
     @JoinTable(
-            name = "users_addresses",
+            name = "users_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "address_id")}
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private Set<Role> roles;
-    public User() {
-    }
 
+    @OneToMany(mappedBy = "shipper", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Order> orders;
 
 }
